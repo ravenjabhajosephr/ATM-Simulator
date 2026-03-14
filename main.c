@@ -1,8 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+void checkCurrentBalance(float balance);
+void depositAmount(float balance);
+void withdrawAmount(float balance);
+
 int main(void) {
     float balance = 1000.00;
+    float currentBalance = 0;
     int choice = 0;
     bool loop = true;
     printf("-------Welcome to C-bank-------\n");
@@ -19,13 +24,15 @@ int main(void) {
                 loop = false;    
             }
             else if (choice == 1) {
-                printf("Enter current balance:\n");
+                checkCurrentBalance(balance);
             }
             else if (choice == 2) {
-                printf("Enter deposit amount:\n");
+                depositAmount(balance);
+                // printf("Deposit Amount logic goes here.\n");
             }
             else if (choice == 3) {
-                printf("Enter withdraw amount:\n");
+                withdrawAmount(balance);
+                // printf("Withdraw Amount logic goes here.\n");
             }
             else {
                 printf("Invalid option");
@@ -37,4 +44,34 @@ int main(void) {
         return 0;
     }
 
-    
+void checkCurrentBalance(float balance) {
+    printf("Your current balance: %f\n", balance);
+}    
+
+void depositAmount(float balance) {
+    float depositAmount = 0.0;
+    printf("Enter the deposit amount: ");
+    scanf("%f", &depositAmount);
+
+    if (depositAmount < 0) {
+        printf("Entered amount is less than zero. Please enter positive amount.\n");
+    }
+    else {
+        balance += depositAmount;
+        printf("Amount %.2f is successfully credited.\n", depositAmount);
+        printf("Your current balance: %.2f\n", balance);
+    }
+}
+
+void withdrawAmount(float balance) {
+    float withdrawAmount = 0.0;
+    printf("Enter the withdraw amount: ");
+    scanf("%f", &withdrawAmount);
+
+    balance -= withdrawAmount;
+
+    printf("Amount %.2f is successfully debited.\n", withdrawAmount);
+    printf("Your current balance: %.2f\n", balance);
+
+}
+
