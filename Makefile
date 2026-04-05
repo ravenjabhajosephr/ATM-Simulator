@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Iinclude -Wall
+CFLAGS = -Wall -Wextra
 
 all:
 	$(CC) $(CFLAGS) src/main.c src/atm_logic.c -o bin/atm
